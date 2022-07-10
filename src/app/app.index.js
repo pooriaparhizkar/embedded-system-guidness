@@ -16,6 +16,8 @@ import Header from "../header/header";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-next-table/dist/SmartTable.css";
 import SmartTable from "react-next-table";
+import { HalfMalf } from "react-spinner-animated";
+import "react-spinner-animated/dist/index.css";
 function MainApp() {
   const [data, setData] = useState([]);
   const headCells = [
@@ -72,37 +74,36 @@ function MainApp() {
       }
     });
   }, []);
-  return (
-    !loading && (
-      <div className="embedded-main-app">
-        <Header />
-        <div className="chart-container">
-          <ResponsiveContainer width={"100%"} height={"95%"}>
-            <LineChart data={data}>
-              <Line
-                activeDot={{ r: 8 }}
-                type="natural"
-                dataKey="HeartRate"
-                stroke="#c40d00"
-                strokeWidth={5}
-                dot={{ stroke: "black", strokeWidth: 2 }}
-              />
-              <CartesianGrid stroke="#ccc" />
-              <XAxis tickMargin={10} dataKey="time" />
-              <YAxis domain={[10, 160]} />
-              <Tooltip />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-        <div className="table-container">
-          <SmartTable
-            title="HeartRate"
-            data={tableData}
-            headCells={headCells}
-          />
-        </div>
+  return !loading ? (
+    <div className="embedded-main-app">
+      <Header />
+      <div className="chart-container">
+        <ResponsiveContainer width={"100%"} height={"95%"}>
+          <LineChart data={data}>
+            <Line
+              activeDot={{ r: 8 }}
+              type="natural"
+              dataKey="HeartRate"
+              stroke="#c40d00"
+              strokeWidth={5}
+              dot={{ stroke: "black", strokeWidth: 2 }}
+            />
+            <CartesianGrid stroke="#ccc" />
+            <XAxis tickMargin={10} dataKey="time" />
+            <YAxis domain={[10, 160]} />
+            <Tooltip />
+          </LineChart>
+        </ResponsiveContainer>
       </div>
-    )
+      <div className="table-container">
+        <SmartTable title="HeartRate" data={tableData} headCells={headCells} />
+      </div>
+    </div>
+  ) : (
+    <div className="loading-container">
+      <HalfMalf 
+    center={true} width={"150px"} height={"150px"} />
+    </div>
   );
 }
 
