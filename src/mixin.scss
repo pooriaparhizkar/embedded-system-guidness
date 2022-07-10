@@ -1,0 +1,109 @@
+@mixin rtl {
+    @at-root body[dir='rtl'] & {
+        @content;
+    }
+}
+
+@mixin embedded-xs {
+    @media (max-width: 575.98px) {
+        @content;
+    }
+}
+
+@mixin embedded-sm {
+    @media (min-width: 575.98px) {
+        @content;
+    }
+}
+
+@mixin embedded-md {
+    @media (min-width: 767.98px) {
+        @content;
+    }
+}
+
+@mixin embedded-lg {
+    @media (min-width: 991.98px) {
+        @content;
+    }
+}
+
+@mixin embedded-xl {
+    @media (min-width: 1199.98px) {
+        @content;
+    }
+}
+
+@mixin embedded-pre-xs {
+    @media (max-width: 575.98px) {
+        @content
+    }
+}
+
+;
+
+@mixin embedded-pre-sm {
+    @media (max-width: 575.98px) {
+        @content
+    }
+}
+
+;
+
+@mixin embedded-pre-md {
+    @media (max-width: 767.98px) {
+        @content
+    }
+}
+
+;
+
+@mixin embedded-pre-lg {
+    @media (max-width: 991.98px) {
+        @content
+    }
+}
+
+;
+
+@mixin embedded-pre-xl {
+    @media (max-width: 1199.98px) {
+        @content
+    }
+}
+
+
+
+@mixin embedded-size($property, $web-value, $mobile-value , $important: null) {
+    @include embedded-xs {
+        #{$property}: $mobile-value $important ;
+    }
+
+    @include embedded-sm {
+        #{$property}: (2 * $mobile-value + $web-value)/3 $important;
+    }
+
+    @include embedded-md {
+        #{$property}: ($mobile-value + $web-value)/2 $important;
+    }
+
+    @include embedded-lg {
+        #{$property}: ($mobile-value + 2 * $web-value)/3 $important;
+    }
+
+    @include embedded-xl {
+        #{$property}: $web-value $important;
+    }
+}
+
+@mixin rtl {
+    @at-root body[dir='rtl'] & {
+        @content;
+    }
+}
+
+@mixin ltr {
+    @at-root body[dir='ltr'] & {
+        @content;
+    }
+}
